@@ -21,21 +21,21 @@ public class UserRepositorio {
      /**
       * Mmetodo privado inyeccion de dependecia interface user
       */
-    private InterfaceUser userCrudRepository;
+    private InterfaceUser userRepository;
      /**
       * metodo publico para obtiene la lista de usuarios
       * @return la lista de usuarios
       */
        public List<User> getAll() {
-        return (List<User>) userCrudRepository.findAll();
+        return (List<User>) userRepository.findAll();
     }
        /**
         * metodo para obtener un usuario por id
         * @param id 
         * @return el usuario
         */
-    public Optional<User> getUser(int id) {
-        return userCrudRepository.findById(id);
+    public Optional<User> getUser(int idi) {
+        return userRepository.findById(idi);
     }
     /**
      * memtodo para crear un usuario
@@ -43,21 +43,21 @@ public class UserRepositorio {
      * @return el usuario creado
      */
     public User create(User user) {
-        return userCrudRepository.save(user);
+        return userRepository.save(user);
     }
     /**
      * metodo para actualizar un usuario
      * @param user 
      */
     public void update(User user) {
-        userCrudRepository.save(user);
+        userRepository.save(user);
     }
     /**
      * metodo para eliminar un usuario
      * @param user 
      */
     public void delete(User user) {
-        userCrudRepository.delete(user);
+        userRepository.delete(user);
     }
     /**
      * Metodo para verificar si existe un correo
@@ -65,7 +65,7 @@ public class UserRepositorio {
      * @return el email del usuario
      */
     public boolean emailExists(String email) {
-        Optional<User> usuario = userCrudRepository.findByEmail(email);
+        Optional<User> usuario = userRepository.findByEmail(email);
         
         return !usuario.isEmpty();
     }
@@ -76,14 +76,14 @@ public class UserRepositorio {
      * @return el correo y la contraseña
      */
     public Optional<User> authenticateUser(String email, String password) {
-        return userCrudRepository.findByEmailAndPassword(email, password);
+        return userRepository.findByEmailAndPassword(email, password);
     }
      /**
       * Metodo par obetener el id maximo
       * @return el usuario con el id maximo
       */
      public Optional<User> lastUserId(){
-        return userCrudRepository.findTopByOrderByIdDesc();
+        return userRepository.findTopByOrderByIdDesc();
     }
      /**
       * Metodo para el mes de cumpleaños de un usuario
@@ -91,7 +91,7 @@ public class UserRepositorio {
       * @return el mes del cumpleaños
       */
     public List<User> birthtDayList(String monthBirthtDay) {
-        return userCrudRepository.findByMonthBirthtDay(monthBirthtDay);
+        return userRepository.findByMonthBirthtDay(monthBirthtDay);
     }
     /**
      * fin de la clase
